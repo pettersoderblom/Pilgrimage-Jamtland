@@ -1,0 +1,49 @@
+﻿body {
+    background-color: #292F15;
+    color: white;
+}
+
+h2 {
+    margin: 10px;
+}
+
+h3 {
+    margin: 10px;
+}
+
+.main-form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 80px;
+    gap: 20px;
+}
+
+.messages-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.guestbook-form-item {
+    background-color: #61714A;
+    margin: 80px 10px 10px 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    color: white !important;
+    width: 400px;
+}
+
+article.guestbook-note, .register-form-container {
+    background-color: #61714A;
+    margin: 10px;
+    padding: 10px;
+    width: 400px;
+    border-radius: 10px;
+}
+
+button.btn.btn-primary.w-100 {
+    margin: 10px 0px;
+}

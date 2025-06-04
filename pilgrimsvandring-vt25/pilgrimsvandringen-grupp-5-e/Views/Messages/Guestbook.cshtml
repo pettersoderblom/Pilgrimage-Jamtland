@@ -1,0 +1,44 @@
+﻿@model pilgrimsvandringen_grupp_5_e.Models.Message
+
+@{
+    ViewData["Title"] = "Gästbok";
+}
+<link rel="stylesheet" href="~/css/messages.css" />
+
+<main class="main-form-container">
+    @if (ViewBag.User != null)
+    {
+        <section class="register-form-container">
+            <h2>Skriv ett meddelande</h2>
+            <form asp-action="PostMessage" method="post">
+                <div class="message-form">
+                    <label asp-for="Title">Rubrik</label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div >
+                <div class="message-form">
+                    <label asp-for="Description">Text</label>
+                    <input asp-for="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Publicera meddelande</button>
+            </form>
+        </section>
+    }
+    <section class="messages-container">
+        <h2>Läs Gästboken</h2>
+        @if (ViewBag.Message != null && ViewBag.Message.Count > 0)
+        {
+            foreach (var message in ViewBag.Message)
+            {
+                <article class="guestbook-note">
+                    <h3>@message.Title</h3>
+                    <p>@message.Description</p>
+                    <br></br>
+                    <p>@message.User.UserName</p>
+                    <p>@message.DateTime</p>
+                </article>
+            }
+        }
+    </section>
+</main>

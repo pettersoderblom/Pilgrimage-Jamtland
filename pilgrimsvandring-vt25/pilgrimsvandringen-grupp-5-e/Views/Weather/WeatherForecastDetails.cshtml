@@ -1,0 +1,72 @@
+﻿@{
+    ViewData["Title"] = "Väder 7-dagarsprognos";
+}
+
+<link rel="stylesheet" href="~/css/weatherdetails.css" />
+
+@if(Model != null)
+{
+        <h2>@Model.TrailVM.Name</h2>
+    <section class="weather-container">
+        <div>
+            
+            @for (int i = 0; i < Model.WeatherStart.Hourly.Time.Count; i++)
+            {
+                <div class="weather-info-container">
+                    <h3>Start: @Model.TrailVM.StartPoint</h3>
+                    <h4>Datum och klockslag: @Model.WeatherStart.Hourly.Time[i]</h4>
+                    <table class="weather-info">                        
+                        <tr>
+                            <th>Temperatur</th>
+                            <th>Sannolikhet för nederbörd</th>
+                            <th>Nederbörd</th>
+                            <th>Snödjup</th>
+                            <th>Vindstyrka</th>
+                            <th>Vindriktning</th>
+                            <th>Kastvindar</th>
+                        </tr>
+                        <tr>
+                            <td>@Model.WeatherStart.Hourly.Temperature[i] @Model.WeatherStart.HourlyUnits.Temperature</td>                         
+                            <td>@Model.WeatherStart.Hourly.Precipitation[i] @Model.WeatherStart.HourlyUnits.Precipitation</td>
+                            <td>@Model.WeatherStart.Hourly.SnowDepth[i] @Model.WeatherStart.HourlyUnits.SnowDepth</td>
+                            <td>@Model.WeatherStart.Hourly.WindSpeed[i] @Model.WeatherStart.HourlyUnits.WindSpeed</td>
+                            <td>@Model.WeatherStart.Hourly.WindDirection[i] @Model.WeatherStart.HourlyUnits.WindDirection</td>
+                            <td>@Model.WeatherStart.Hourly.WindGusts[i] @Model.WeatherStart.HourlyUnits.WindGusts</td>
+                        </tr>
+                    </table>
+                </div>
+            }
+        </div>
+        <div>
+            
+            @for (int i = 0; i < Model.WeatherEnd.Hourly.Time.Count; i++)
+            {
+                <div class="weather-info-container">
+                    <h3>Slut: @Model.TrailVM.EndPoint</h3>
+                    <h4>Datum och klockslag: @Model.WeatherEnd.Hourly.Time[i]</h4>
+                    <table class="weather-info">
+                        <tr class="weather-info-point">
+                            <th>Temperatur</th>
+                            <th>Sannolikhet för nederbörd</th>
+                            <th>Nederbörd</th>
+                            <th>Snödjup</th>
+                            <th>Vindstyrka</th>
+                            <th>Vindriktning</th>
+                            <th>Kastvindar</th>
+                        </tr>
+                        <tr class="weather-info-point">
+                            <td>@Model.WeatherEnd.Hourly.Temperature[i] @Model.WeatherEnd.HourlyUnits.Temperature</td>                           
+                            <td>@Model.WeatherEnd.Hourly.Precipitation[i] @Model.WeatherEnd.HourlyUnits.Precipitation</td>
+                            <td>@Model.WeatherEnd.Hourly.SnowDepth[i] @Model.WeatherEnd.HourlyUnits.SnowDepth</td>
+                            <td>@Model.WeatherEnd.Hourly.WindSpeed[i] @Model.WeatherEnd.HourlyUnits.WindSpeed</td>
+                            <td>@Model.WeatherEnd.Hourly.WindDirection[i] @Model.WeatherEnd.HourlyUnits.WindDirection</td>
+                            <td>@Model.WeatherEnd.Hourly.WindGusts[i] @Model.WeatherEnd.HourlyUnits.WindGusts</td>
+                        </tr>
+                    </table>
+                </div>
+            }
+        </div>
+    </section>
+    
+   
+}

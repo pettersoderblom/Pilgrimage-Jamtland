@@ -1,0 +1,12 @@
+﻿@{
+    ViewData["Title"] = "Konto";
+}
+<link rel="stylesheet" href="~/css/account.css" />
+
+<main class="main-index-container">
+    <section class="account-container account-form-item">
+        <h1>Välkommen @ViewBag.UserName</h1>
+    </section>
+    
+    <a class="btn btn-primary" asp-controller="Account" asp-action="Logout">Logga ut</a>
+</main>

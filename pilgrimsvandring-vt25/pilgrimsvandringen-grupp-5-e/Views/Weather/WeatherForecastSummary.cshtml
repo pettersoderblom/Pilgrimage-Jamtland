@@ -1,0 +1,132 @@
+﻿
+@{
+    ViewData["Title"] = "Väderöverblick";
+    DateTime currentDate = DateTime.Now.Date;
+    int currentHour = DateTime.Now.Hour;
+}
+
+<link rel="stylesheet" href="~/css/weathersummary.css" />
+
+
+<div class="header">
+    <button id="myButton" class="dropbtn">@Model[0].TrailVM.Name <img src="/icons/mainpage/dropdown.png" /></button>
+    <div id="myDropdown" class="dropdown-content">
+        @for(int i = 0; i < Model.Count; i++)
+        {
+
+            <a href="javascript:void(0)" class="trail-link" data-trail-index="@i">
+                <h3>@Model[i].TrailVM.Name</h3>
+            </a>
+        }
+    </div>
+</div>
+
+
+@for (int i = 0; i < Model.Count; i++)
+{
+    <div class="weather-start-end-container" id="trail-@i" style="display: none;">
+        <div class="weather-start-end-info">
+            <h4>Startpunkt</h4>
+            <h3>@Model[i].TrailVM.StartPoint</h3>
+            <div class="weather-code">@Model[i].WeatherStart.Hourly.WeatherCode[12]</div>
+            <p>@Model[i].WeatherStart.Hourly.Temperature[12] @Model[i].WeatherStart.HourlyUnits.Temperature</p>
+            <button class="toggle-details" data-trail-index="@i" data-point="start">Idag <img src="/icons/mainpage/dropdown.png" /></button>
+            <div class="weather-details" id="start-weather-details-@i" style="display: none;">
+                @for (int j = 0; j < Model[i].WeatherStart.Hourly.Time.Count; j++)
+                {
+                    string timeString = Model[i].WeatherStart.Hourly.Time[j];
+                    DateTime dateTime = DateTime.Parse(timeString);
+
+                    int hour = dateTime.Hour;
+                    DateTime date = dateTime.Date;
+
+                    if (date > currentDate || (date == currentDate && hour >= currentHour))
+                    {
+                        <div class="weather-info-container">
+                            <div class="time-info">
+                                <span class="time">@dateTime.ToString("HH:mm")</span>
+                                <span class="date">@dateTime.ToString("yyyy-MM-dd")</span>
+                            </div>
+                        <table class="weather-info">
+                            <tr>
+                                    <th><img src="/icons/mainpage/thermometer.png" /></th>
+                                    <th><img src="/icons/mainpage/hygrometer.png" /></th>
+                                    <th><img src="/icons/mainpage/snow.png" /></th>
+                                    <th><img src="/icons/mainpage/wind.png" /></th>
+                                    <th><img src="/icons/mainpage/compass.png" /></th>
+                            </tr>
+                            <tr>
+                                <td>@Model[i].WeatherStart.Hourly.Temperature[j] @Model[i].WeatherStart.HourlyUnits.Temperature</td>
+                                <td>@Model[i].WeatherStart.Hourly.Precipitation[j] @Model[i].WeatherStart.HourlyUnits.Precipitation</td>
+                                <td>@Model[i].WeatherStart.Hourly.SnowDepth[j] @Model[i].WeatherStart.HourlyUnits.SnowDepth</td>
+                                <td>@Model[i].WeatherStart.Hourly.WindSpeed[j] @Model[i].WeatherStart.HourlyUnits.WindSpeed</td>
+                                <td>@Model[i].WeatherStart.Hourly.WindDirection[j] @Model[i].WeatherStart.HourlyUnits.WindDirection</td>
+                            </tr>
+                        </table>
+                    </div>
+                }}
+            </div>
+        </div>
+
+        <div class="weather-start-end-info">
+            <h4>Slutpunkt</h4>
+            <h3>@Model[i].TrailVM.EndPoint</h3>
+            <div class="weather-code">@Model[i].WeatherEnd.Hourly.WeatherCode[12]</div>
+            <p>@Model[i].WeatherEnd.Hourly.Temperature[12] @Model[i].WeatherEnd.HourlyUnits.Temperature</p>
+            <button class="toggle-details" data-trail-index="@i" data-point="end">Idag <img src="/icons/mainpage/dropdown.png" /></button>
+        <div class="weather-details" id="end-weather-details-@i" style="display: none;">
+            @for (int j = 0; j < Model[i].WeatherEnd.Hourly.Time.Count; j++)
+                {
+                    string timeString = Model[i].WeatherStart.Hourly.Time[j];
+                    DateTime dateTime = DateTime.Parse(timeString); 
+
+                    int hour = dateTime.Hour;
+                    DateTime date = dateTime.Date; 
+
+                    if (date > currentDate || (date == currentDate && hour >= currentHour))
+                    {
+                        <div class="weather-info-container">
+                            <div class="time-info">
+                                <span class="time">@dateTime.ToString("HH:mm")</span>
+                            <span class="date">@dateTime.ToString("yyyy-MM-dd")</span>
+                            </div>
+
+                    <table class="weather-info">
+                        <tr>
+                            <th><img src="/icons/mainpage/thermometer.png"/></th>
+                                <th><img src="/icons/mainpage/hygrometer.png" /></th>
+                                <th><img src="/icons/mainpage/snow.png" /></th>
+                                <th><img src="/icons/mainpage/wind.png" /></th>
+                                <th><img src="/icons/mainpage/compass.png" /></th>
+                        </tr>
+                        <tr>
+                            <td>@Model[i].WeatherEnd.Hourly.Temperature[j] @Model[i].WeatherEnd.HourlyUnits.Temperature</td>
+                            <td>@Model[i].WeatherEnd.Hourly.Precipitation[j] @Model[i].WeatherEnd.HourlyUnits.Precipitation</td>
+                            <td>@Model[i].WeatherEnd.Hourly.SnowDepth[j] @Model[i].WeatherEnd.HourlyUnits.SnowDepth</td>
+                            <td>@Model[i].WeatherEnd.Hourly.WindSpeed[j] @Model[i].WeatherEnd.HourlyUnits.WindSpeed</td>
+                            <td>@Model[i].WeatherEnd.Hourly.WindDirection[j] @Model[i].WeatherEnd.HourlyUnits.WindDirection</td>
+                        </tr>
+                    </table>
+                </div>
+            }}
+        </div>
+    
+    </div>
+               <div class="firerisk-container">
+               <img src="/icons/mainpage/wildfire.png"/>
+            <div class="firerisk-message">
+                <h4>Brandrisk</h4>
+                <p>
+                    @{
+                        var riskMessage = Model[i].FireRiskVM.RiskMessage;
+                        var defaultMessage = "Ingen brandrisk just nu.";
+                    }
+                    @(riskMessage.Contains("Data saknas") ? defaultMessage : riskMessage)
+                </p>
+            </div>
+        </div>
+    </div>
+}
+
+
+<script type="module" src="~/js/weatherSummary.js"></script>                   

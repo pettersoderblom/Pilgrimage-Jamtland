@@ -1,0 +1,172 @@
+﻿@{
+    ViewData["Title"] = "Leder";
+}
+
+<link rel="stylesheet" href="~/css/traildetails.css" />
+
+<div class="trail-page">
+<div class="stage-image-container">
+        <div id="trail" class="trail-map" data-trail-id="@Model.Id"></div>
+
+</div>
+
+    <div class="checkbox-container" id="checkboxes-icons">
+    </div>
+
+
+<div class="trail-info-container">
+    <div class="trail-name-container">
+        <h1>@Model.Name</h1>
+        <div class="circle-item" style="background-color:@Model.Color"></div>
+    </div>
+    <div class="trail-stats-container">
+        <div class="trail-stats-item">
+                <img src="~/icons/mainpage/route.png" alt="Statistik ikon" />
+            <p>@Model.Length km</p>
+        </div>
+        <div class="trail-stats-item">
+                <img src="~/icons/mainpage/arrow.png" alt="Statistik ikon" />
+            <p>150 m</p>
+        </div>
+        <div class="trail-stats-item">
+            <img src="~/icons/mainpage/terrain.png" alt="Statistik ikon" />
+            <p>@Model.Terrain</p>
+        </div>
+
+    </div>
+
+
+
+</div>
+<div class="trail-description-container">
+    <h2>Beskrivning</h2>
+    <p>@Model.Description</p>
+</div>
+
+<section class="safety-container">
+    <div class="safety-item">
+        <img src="/icons/mainpage/exclimation.png" alt="Utropstecken" />
+        <h3>Säkerhet</h3>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Praesent nec arcu sed tortor iaculis dignissim. Ut vel sem e
+            get magna volutpat iaculis.
+        </p>
+    </div>
+    <div class="safety-item">
+        <img src="/icons/mainpage/backpack (1).png" alt="Utropstecken" />
+        <h3>Utrustning</h3>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Praesent nec arcu sed tortor iaculis dignissim. Ut vel sem e
+            get magna volutpat iaculis.
+        </p>
+    </div>
+    <div class="safety-item">
+        <img src="/icons/mainpage/checklist.png" alt="Utropstecken" />
+        <h3>Förberedelser</h3>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Praesent nec arcu sed tortor iaculis dignissim. Ut vel sem e
+            get magna.
+        </p>
+    </div>
+</section>
+
+<div class="trail-stages-container">
+      
+   
+        <button class="button-container" id="back-button">
+            <img src="~/icons/mainpage/right-arrow.png" alt="back-button">
+        </button>
+        
+  
+    <div id="flex-container-stages">
+
+            @foreach (var stage in Model.StageViewModels)
+            {
+                <div class="stage-item" id="@stage.Id">
+                    <img src="/images/mainpage/mot_ljungdalen.jpg" />
+                    <div class="stage-description">
+                        <h4 class="stage-title">@stage.Name </h4>
+                        <p class="stage-length"><img id="stats-icon" src="~/icons/mainpage/placeholder.png" />@stage.Length km</p>
+                    </div>
+                </div>
+            }
+    </div>
+
+
+
+              
+
+    
+
+
+   
+
+
+
+    <button class="button-container" id="forward-button">
+        <img src="~/icons/mainpage/right-arrow.png" alt="forward-button" class="forward-button">
+    </button>
+</div>
+
+    
+
+        @foreach (var stage in Model.StageViewModels)
+        {
+            <div class="big-container" id="big-container-@stage.Id" style="display:none;">
+                <div class="stage-name-container">
+                    <h3>@stage.StartPoint - @stage.EndPoint</h3>
+                </div>
+                <div class="description-container">
+                    <p>@stage.Description</p>
+                </div>
+            <div class="stage-stats-container">
+                <div class="stats-item">
+                    <img src="~/icons/mainpage/route.png" alt="längd-bild" />
+                    <p class="">@stage.Length Km</p>
+                </div>
+                <div class="stats-item">
+                    <img src="~/icons/mainpage/arrow.png" alt="längd-bild" />
+                    <p class="">@stage.Height Höjdmeter</p>
+                </div>
+                <div class="stats-item">
+                    <img src="~/icons/mainpage/speedometer (2).png" alt="höjdmeter-bild" />
+                    <p class="">@stage.Difficulty</p>
+                </div>
+                </div>
+            </div>
+        }
+   
+</div>
+
+<script>
+    const stageItem = document.querySelectorAll(".stage-item")
+   
+    stageItem.forEach(item => {
+		item.addEventListener('click', () => {
+			const stageId = item.id; 
+            const details = document.getElementById(`big-container-${stageId}`);
+
+			document.querySelectorAll(".big-container").forEach(container => {
+			 	container.style.display = "none";
+			 })
+
+             if(details){
+			 details.style.display = "flex";
+             }
+
+		})
+    })
+
+    
+
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.7.5/proj4.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-gpx/1.5.0/gpx.min.js"></script>
+<script type="module" src="~/js/trailDetailsMap.js" asp-append-version="true"></script>
+<script type="module" src="~/js/trailDetails.js"></script>

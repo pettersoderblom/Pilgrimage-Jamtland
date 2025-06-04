@@ -1,0 +1,127 @@
+﻿@{
+    ViewData["Title"] = "Startsida";
+
+    var trailImages = new Dictionary<int, string>
+    {
+        { 1, "/images/RouteImages/pexels-photo-1237111.jpeg" },
+        { 2, "/images/RouteImages/pexels-lauripoldre-30713810.jpg" },
+        { 3, "/images/RouteImages/pexels-roemag-27742040.jpg" },
+        { 4, "/images/RouteImages/pexels-henkephotoart-29775986.jpg" }
+    };
+}
+<link rel="stylesheet" href="~/css/mainpage.css"/>
+<div class="backdrop"></div>
+<div class="page-container">
+
+
+    <section class="first-section">
+
+        <div id="welcome-lbl">
+            <h1>
+                PILGRIM
+            </h1>
+            <img src="~/images/mainpage/trailsmap.png" alt="Alternate Text" />
+        </div>
+        <div class="route-cards-container">
+            <a href="@Url.Action("TrailDetails", "Trails", new { id = 2 })" class="cards-item">
+                <img src="~/icons/mainpage/placeholder.png" alt="Kårböleleden" />
+                <h2>Kårböleleden</h2>
+                <div class="circle-item yellow-circle"></div>
+            </a>
+
+            <a href="@Url.Action("TrailDetails", "Trails", new { id = 1 })" class="cards-item">
+                <img src="~/icons/mainpage/placeholder.png" alt="Jämt-Norgevägen" />
+                <h2>Jämt-Norgevägen</h2>
+                <div class="circle-item green-circle"></div>
+            </a>
+
+            <a href="@Url.Action("TrailDetails", "Trails", new { id = 3 })" class="cards-item">
+                <img src="~/icons/mainpage/placeholder.png" alt="St:Olovsleden" />
+                <h2>St:Olovsleden</h2>
+                <div class="circle-item red-circle"></div>
+            </a>
+
+            <a href="@Url.Action("TrailDetails", "Trails", new { id = 4 })" class="cards-item">
+                <img src="~/icons/mainpage/placeholder.png" alt="Indalsleden" />
+                <h2>Indalsleden</h2>
+                <div class="circle-item blue-circle"></div>
+            </a>
+        </div>
+    </section>
+
+
+    <section>
+        <article>
+            <div id="start-page-map" class="map-div"></div>
+        </article>
+    </section>
+
+    <section class="safety-container">
+        <div class="safety-item">
+            <img src="/icons/mainpage/exclimation.png" alt="Utropstecken" />
+            <h3>Säkerhet</h3>
+            <p>Vädret kan skifta snabbt, så klä dig i lager och ha alltid med regn-
+                och vindskydd. Håll dig på markerade leder och meddela någon om din 
+                planerade rutt.<br/> Läs mer</p>
+        </div>
+        <div class="safety-item">
+            <img src="/icons/mainpage/backpack (1).png" alt="Utropstecken" />
+            <h3>Utrustning</h3>
+            <p>
+                Bra kängor, karta och tillräckligt med mat och vatten är viktiga
+                för en säker vandring. Packa även ett första hjälpen-kit och en laddad
+                mobil.<br/> Läs mer
+            </p>
+        </div>
+        <div class="safety-item">
+            <img src="/icons/mainpage/checklist.png" alt="Utropstecken" />
+            <h3>Förberedelser</h3>
+            <p>
+                Planera din rutt i förväg och träna inför längre etapper.
+                Läs på om natur och kultur längs leden
+                för en rikare upplevelse.<br/> Läs mer
+            </p>
+        </div>
+    </section>
+<section class="trail-cards-container">
+    @if (ViewBag.Trails != null && ViewBag.Trails.Count > 0)
+    {
+    foreach (var trail in ViewBag.Trails)
+    {
+        var imagePath = trailImages.ContainsKey(trail.Id) ? trailImages[trail.Id] : "/images/trails/default.jpg";
+                <article class="trail-card-item">
+                    <a class="nav-link trail-card-link" asp-area="" asp-controller="Trails" asp-action="TrailDetails" asp-route-id="@trail.Id">
+                <img class="trail-image" src="@imagePath" alt="Alternate Text" />
+                <div class="trail-info-container">
+                        <h3>@trail.Name</h3>
+                    <p class="trail-detail">
+                        @trail.Description
+                    </p>
+                    <div class="trail-stats-container">
+                        <div class="stats-length-container stats-container">
+                            <img class="stats-icon" src="/icons/mainpage/route.png" alt="Alternate Text" />
+                                <p>@trail.Length Km</p>
+                        </div>
+                        <div class="stats-height-container stats-container">
+                            <img class="stats-icon" src="/icons/mainpage/arrow.png" alt="Alternate Text" />
+                            <p>150 m</p>
+                        </div>
+                        <div class="stats-difficulty-container stats-container">
+                            <img class="stats-icon" src="/icons/mainpage/speedometer (2).png" alt="Alternate Text" />
+                                <p>@trail.Difficulty</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </article>
+        }
+    }
+</section>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.7.5/proj4.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-gpx/1.5.0/gpx.min.js"></script>
+<script type="module" src="~/js/Maps/StartPageMap.js" asp-append-version="true"></script>

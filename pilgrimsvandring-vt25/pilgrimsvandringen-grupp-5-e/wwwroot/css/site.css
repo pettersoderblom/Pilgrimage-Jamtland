@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+
+html {
+    font-size: 14px;
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+body {
+    font-family: "DM Sans";
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar {
+    background-color: #FFEBE1;
+    position:fixed;
+    width:100%;
+    z-index: 1000;
+}
+
+.navbar-brand img{
+    width:100px;
+    padding-left:20px;
+}
+
+.navbar-nav{
+    justify-content:center;
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+.account-img {
+    position:relative;
+    top:-3px;
+}
+
+.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
+    color: var(--bs-secondary-color);
+    text-align: end;
+}
+
+.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
+  text-align: start;
+}
+
+.footer-container {
+    margin: 0px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: transparent;
+    text-decoration: none;
+   
+    width: 100%;
+}
+
+main {
+    flex: 1;
+}
+
+footer {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: transparent;
+    border-top: solid transparent;
+    padding: 20px;
+    z-index: 1000;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    text-decoration: none;
+    width: 100%;
+}
+
+    .footer-container a {
+        text-decoration: none;
+        color: white;
+        border-bottom: solid white 1px;
+        cursor: pointer;
+    }
+
+        .footer-container a:hover {
+            color: gray;
+            cursor: pointer;
+        }

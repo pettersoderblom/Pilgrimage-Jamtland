@@ -1,0 +1,244 @@
+﻿body {
+    background-color: #292F15;
+    color: white;
+}
+
+h2 {
+    margin: 10px;
+}
+
+h3 {
+    margin: 10px;    
+}
+
+a {
+    text-decoration:none;
+}
+
+.header{
+    display: flex;
+    justify-content:center;
+    margin-top:80px;
+}
+
+.dropbtn {
+    margin:auto;
+    background-color: transparent;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: solid white 1px;
+    cursor: pointer;
+    width:40%;
+    font-size:20px;
+    
+}
+
+.dropbtn img{
+    width:30px;
+    margin-left:20px;
+   
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+   
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: rgb(41 47 21 / 96%);
+    color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    width: 40%;
+    margin-top: 55px;
+    border: solid white 1px;
+}
+  
+    .dropdown-content h3 {
+        color: white;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        font-size: 18px;
+    }
+
+        .dropdown-content h3:hover {
+            background-color: rgb(36 39 26 / 75%);
+        }
+
+.show {
+    display: block;
+}
+
+.weather-cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 100px;    
+}
+
+.weather-card-item {
+    background-color: #61714A;
+    display: flex;
+    width: 40%;
+    margin: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    color: white;
+}
+
+.weather-start-end-container {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content:center;
+    margin: 100px 0;
+    gap:50px 150px;
+}
+
+.weather-start-end-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 10px;
+    border: solid white 1px;
+    padding: 40px 50px;
+    border-radius: 20px;
+    width: 300px;
+    height: fit-content;
+}
+
+    .weather-start-end-info h3{
+        font-size:1.5rem;
+    }
+
+    .weather-start-end-info h4 {
+        font-size: 1.2rem;
+        margin: 10px 0;
+    }
+
+    .weather-start-end-info p{
+        font-size:1.5rem;
+    }
+
+    .weather-code {
+    }
+
+.weather-code p{
+    width:100%;
+    font-size:1.3rem;
+}
+
+.toggle-details {
+    width: 250px;
+    background-color: transparent;
+    border: solid white 1px;
+    color: white;
+    border-radius:6px;
+    padding: 5px;
+    margin-top:30px;
+}
+
+.toggle-details img{
+    width:20px;
+    margin-left:20px;
+}
+
+.weather-details {
+    width: 290px;
+    max-height: 400px; 
+    overflow-y: auto; 
+}
+
+    .weather-details::-webkit-scrollbar {
+        width: 8px; 
+    }
+
+    .weather-details::-webkit-scrollbar-thumb {
+        background-color: white; 
+        border-radius: 10px; 
+        border: 1px solid #282828; 
+    }
+
+    .weather-details::-webkit-scrollbar-track {
+        background: transparent; 
+        border-radius: 10px; 
+    }
+
+.weather-info-container{
+    border-bottom: solid white 1px;
+    padding:15px 5px;
+    font-size:0.8rem;
+    display:flex;
+    gap:15px;
+}
+
+.weather-info-container img {
+    width:23px;
+}
+
+.time-info{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    width:90px;
+}
+.time{
+    font-size:1.2rem;
+}
+
+.date {
+    font-size:0.8rem;
+}
+
+.firerisk-container {
+    width: 750px;
+    border: solid white 1px;
+    padding: 20px 50px;
+    border-radius: 10px;
+    margin: 0 200px;
+    display: flex;
+    align-items: center; 
+    gap: 50px;
+}
+
+.firerisk-container h4{
+    font-size:1.3rem; 
+    
+
+}
+
+    .firerisk-container img {
+        height: fit-content;
+        width:50px;
+    }
+
+.firerisk-message {
+    width: 550px;
+}
+
+.firerisk-message p {
+    margin-bottom:0;
+}
+
+@media all and (max-width:800px) {
+
+    .firerisk-container {
+        width: 450px;
+    }
+}
+
+@media all and (max-width:450px) {
+    .dropbtn {
+        width:95%;
+    }
+        .firerisk-container{
+      width: 300px;
+    }
+
+}
